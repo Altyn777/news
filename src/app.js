@@ -1,7 +1,8 @@
-// import "./app.css";
 import { Routes, Route, Link, Outlet, Navigate } from "react-router-dom";
 
-import Login from "./Modules";
+// import "./app.css";
+
+import { Login, News } from "./Modules";
 
 function App() {
   let user;
@@ -25,7 +26,7 @@ function App() {
         }
       >
         <Route index element={<>Home</>} />
-        <Route path="news" element={<>news</>} />
+        <Route path="news" element={<News />} />
         <Route
           path="profile"
           element={user ? <>profile</> : <Navigate to="/login" />}
