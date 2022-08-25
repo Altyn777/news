@@ -45,7 +45,11 @@ const Login = () => {
   return (
     <div>
       <h2 className="text-center">Sign in</h2>
-      <form onSubmit={handleSubmit} className="container">
+      <form
+        onSubmit={handleSubmit}
+        className="container"
+        style={{ width: "300px" }}
+      >
         <label htmlFor="login" className="form-label">
           Login:
         </label>

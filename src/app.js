@@ -1,7 +1,8 @@
-import { Routes, Route, Link, Outlet, Navigate } from "react-router-dom";
+import { Routes, Route, Outlet, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import { Login, News, Profile } from "./Modules";
+import Navbar from "./Components/Navbar";
 
 function App() {
   const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
@@ -14,17 +15,7 @@ function App() {
           <>
             <header>
               <h1 className="text-bg-success m-0 p-3">News</h1>
-              <nav className="navbar navbar-dark bg-success bg-opacity-75 px-3 mb-2">
-                <Link to="/news" className="nav-link nav-item">
-                  Home
-                </Link>
-                <Link to="/news/news" className="nav-link nav-item">
-                  News
-                </Link>
-                <Link to="/news/profile" className="nav-link nav-item">
-                  Profile
-                </Link>
-              </nav>
+              <Navbar />
             </header>
             <Outlet />
           </>
