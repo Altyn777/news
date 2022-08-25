@@ -5,6 +5,7 @@ const API_KEY = "19992895c1984228934bf8c7dd43649e";
 
 const News = () => {
   const [news, setNews] = useState([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -13,7 +14,11 @@ const News = () => {
       );
       setNews(data.articles);
     };
-    fetchNews();
+    try {
+      fetchNews();
+    } catch (error) {
+      setError(error.message);
+    }
   }, []);
 
   return (
@@ -21,7 +26,9 @@ const News = () => {
       {news.map((article) => {
         const content = article.content.split("[")[0];
 
-        return (
+        return error ? (
+          <span>{error}</span>
+        ) : (
           <article id={article.url + article.title}>
             <h3>{article.title}</h3>
             {article.author && <div>{article.author}</div>}
