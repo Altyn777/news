@@ -6,6 +6,7 @@ const API_KEY = "19992895c1984228934bf8c7dd43649e";
 const News = () => {
   const [news, setNews] = useState([]);
   const [error, setError] = useState(false);
+  console.log(error);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -21,14 +22,14 @@ const News = () => {
     fetchNews();
   }, []);
 
-  return (
+  return error ? (
+    <span className="text-danger m-3">{error}</span>
+  ) : (
     <>
       {news.map((article) => {
         const content = article.content.split("[")[0];
 
-        return error ? (
-          <span className="text-danger m-3">{error}</span>
-        ) : (
+        return (
           <article
             id={article.url + article.title}
             className="card card-body bg-success border-success bg-opacity-25 m-3 p-3"
