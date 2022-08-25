@@ -9,7 +9,7 @@ const News = () => {
   useEffect(() => {
     const fetchNews = async () => {
       const { data } = await axios.get(
-        `https://newsapi.org/v2/everything?q=war&from=2022-08-23&pageSize=10&lang="en"&apiKey=${API_KEY}`
+        `https://newsapi.org/v2/everything?q=war&from=2022-08-25&pageSize=10&lang="en"&apiKey=${API_KEY}`
       );
       setNews(data.articles);
     };
@@ -25,6 +25,7 @@ const News = () => {
           <article id={article.url + article.title}>
             <h3>{article.title}</h3>
             {article.author && <div>{article.author}</div>}
+            {<div>{article.publishedAt}</div>}
             <div className="content">
               {article.urlToImage && (
                 <img
