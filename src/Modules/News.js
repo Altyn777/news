@@ -6,7 +6,6 @@ const API_KEY = "19992895c1984228934bf8c7dd43649e";
 const News = () => {
   const [news, setNews] = useState([]);
   const [error, setError] = useState(false);
-  console.log(error);
 
   useEffect(() => {
     const fetchNews = async () => {
@@ -31,7 +30,7 @@ const News = () => {
 
         return (
           <article
-            id={article.url + article.title}
+            key={article.url + article.title}
             className="card card-body bg-success border-success bg-opacity-25 m-3 p-3"
           >
             <h3 className="card-title">{article.title}</h3>
