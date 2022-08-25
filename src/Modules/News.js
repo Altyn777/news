@@ -9,16 +9,16 @@ const News = () => {
 
   useEffect(() => {
     const fetchNews = async () => {
-      const { data } = await axios.get(
-        `https://newsapi.org/v2/everything?q=war&from=2022-08-25&pageSize=10&lang="en"&apiKey=${API_KEY}`
-      );
-      setNews(data.articles);
+      try {
+        const { data } = await axios.get(
+          `https://newsapi.org/v2/everything?q=war&from=2022-08-25&pageSize=10&lang="en"&apiKey=${API_KEY}`
+        );
+        setNews(data.articles);
+      } catch (error) {
+        setError(error.message);
+      }
     };
-    try {
-      fetchNews();
-    } catch (error) {
-      setError(error.message);
-    }
+    fetchNews();
   }, []);
 
   return (

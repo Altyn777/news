@@ -1,11 +1,12 @@
 import { Routes, Route, Link, Outlet, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./app.css";
 
-import { Login, News } from "./Modules";
+import { Login, News, Profile } from "./Modules";
 
 function App() {
-  let user;
+  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
 
   return (
     <Routes>
@@ -29,7 +30,9 @@ function App() {
         <Route path="news" element={<News />} />
         <Route
           path="profile"
-          element={user ? <>profile</> : <Navigate to="/news/login" />}
+          element={
+            isAuthenticated ? <Profile /> : <Navigate to="/news/login" />
+          }
         />
         <Route path="login" element={<Login />} />
       </Route>
