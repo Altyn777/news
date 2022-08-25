@@ -4,7 +4,7 @@ const Profile = () => {
   const user = users[0];
 
   return (
-    <div>
+    <div className="mx-3">
       <h2>Profile</h2>
       <dl>
         <dt>Login</dt>

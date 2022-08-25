@@ -11,7 +11,7 @@ const News = () => {
     const fetchNews = async () => {
       try {
         const { data } = await axios.get(
-          `https://newsapi.org/v2/everything?q=war&from=2022-08-25&pageSize=10&lang="en"&apiKey=${API_KEY}`
+          `https://newsapi.org/v2/everything?q=technology&from=2022-08-25&pageSize=10&lang="en"&apiKey=${API_KEY}`
         );
         setNews(data.articles);
       } catch (error) {
@@ -27,23 +27,29 @@ const News = () => {
         const content = article.content.split("[")[0];
 
         return error ? (
-          <span>{error}</span>
+          <span className="text-danger m-3">{error}</span>
         ) : (
-          <article id={article.url + article.title}>
-            <h3>{article.title}</h3>
-            {article.author && <div>{article.author}</div>}
-            {<div>{article.publishedAt}</div>}
-            <div className="content">
+          <article
+            id={article.url + article.title}
+            className="card card-body bg-success border-success bg-opacity-25 m-3 p-3"
+          >
+            <h3 className="card-title">{article.title}</h3>
+            {article.author && (
+              <div className="card-subtitle">{article.author}</div>
+            )}
+            <div className="text-muted">
+              {article.publishedAt.split("T")[0]}
+            </div>
+            <div className="d-flex">
               {article.urlToImage && (
                 <img
                   src={article.urlToImage}
                   alt={article.title}
                   width={200}
                   loading="lazy"
-                  style={{ marginRight: "10px" }}
                 />
               )}
-              {content}
+              <div className="card-text mx-3">{content}</div>
             </div>
           </article>
         );

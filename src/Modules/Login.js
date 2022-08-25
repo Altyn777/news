@@ -31,8 +31,6 @@ const Login = () => {
           dispatch(loginSuccess(data.login));
           navigate("/news/profile");
         } else {
-          console.log(user.login);
-          console.log(data.login);
           throw new Error("The username or password you entered is incorrect");
         }
       } catch (error) {
@@ -46,26 +44,34 @@ const Login = () => {
 
   return (
     <div>
-      <h2>Sign in</h2>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="login">Login:</label>
+      <h2 className="text-center">Sign in</h2>
+      <form onSubmit={handleSubmit} className="container">
+        <label htmlFor="login" className="form-label">
+          Login:
+        </label>
         <input
           id="login"
           placeholder="Enter a login"
           type="text"
           required
           onChange={handleInput}
+          className="form-control mb-3"
         />
-        <label htmlFor="password">Password:</label>
+        <label htmlFor="password" className="form-label">
+          Password:
+        </label>
         <input
           id="password"
           placeholder="Enter a password"
           type="password"
           required
           onChange={handleInput}
+          className="form-control mb-3"
         />
-        <button type="submit">Login</button>
-        {error && <span>{error}</span>}
+        <button type="submit" className="btn btn-success">
+          Login
+        </button>
+        {error && <div className="text-danger mt-3">{error}</div>}
       </form>
     </div>
   );
