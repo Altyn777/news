@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import userReducer from "./userRedux";
+import userReducer from "./user";
 
 export default configureStore({
   reducer: {

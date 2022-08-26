@@ -1,37 +1,35 @@
-import { Routes, Route, Outlet, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { Provider } from "react-redux";
 
-import { Login, News, Profile } from "./Modules";
-import Navbar from "./Components/Navbar";
+import { Login, News, Profile, Navbar, Heading } from "./components";
+
+import store from "./redux/store";
 
 function App() {
-  const isAuthenticated = useSelector((state) => state.user.isAuthenticated);
-
   return (
-    <Routes>
-      <Route
-        path="/news"
-        element={
-          <>
-            <header>
-              <h1 className="text-bg-success m-0 p-3">News</h1>
-              <Navbar />
-            </header>
-            <Outlet />
-          </>
-        }
-      >
-        <Route index element={<h2 className="mx-3">Home</h2>} />
-        <Route path="news" element={<News />} />
-        <Route
-          path="profile"
-          element={
-            isAuthenticated ? <Profile /> : <Navigate to="/news/login" />
-          }
-        />
-        <Route path="login" element={<Login />} />
-      </Route>
-    </Routes>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/news"
+            element={
+              <>
+                <header>
+                  <Heading />
+                  <Navbar />
+                </header>
+                <Outlet />
+              </>
+            }
+          >
+            <Route index element={<h2 className="mx-3">Home</h2>} />
+            <Route path="news" element={<News />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="login" element={<Login />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   );
 }
 
